@@ -1,2 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata');
 @import url('https://fonts.googleapis.com/css?family=Russo+One');
+
+@font-face {
+    font-family: 'Segoe-MDL2-Assets-MetroUI';
+    src: url('Segoe-MDL2-Assets-MetroUI.eot?#iefix') format('embedded-opentype'),  url('Segoe-MDL2-Assets-MetroUI.woff') format('woff'), url('Segoe-MDL2-Assets-MetroUI.ttf')  format('truetype'), url('Segoe-MDL2-Assets-MetroUI.svg#Segoe-MDL2-Assets-MetroUI') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SegoeUI';
+    src: url('SegoeUI.eot?#iefix') format('embedded-opentype'),  url('SegoeUI.woff') format('woff'), url('SegoeUI.ttf')  format('truetype'), url('SegoeUI.svg#SegoeUI') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SegoeMDL2Assets';
+    src: url('SegoeMDL2Assets.eot?#iefix') format('embedded-opentype'),  url('SegoeMDL2Assets.woff') format('woff'), url('SegoeMDL2Assets.ttf')  format('truetype'), url('SegoeMDL2Assets.svg#SegoeMDL2Assets') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
