@@ -49,6 +49,7 @@ $(function() {
 });
 var learn;
 var acelng;
+var lastid;
 var marletezik = false;
 
 function updatemenu() {
@@ -73,6 +74,7 @@ function openTask(id) {
         }
     }
     _("cnt").innerHTML = "Betöltés...";
+    lastid = id;
     $.ajax({
         url: "https://host.csfcloud.com/learndb/feladat.php?id=" + id,
         success: function(data){
@@ -86,10 +88,11 @@ function openTask(id) {
             _("cnt").innerHTML += "<h2>Példa</h2>";
             _("cnt").innerHTML += "<table><tr><td>"+replaceAll("\n", "<br>", data.e_input)+"</td><td class='icons'>&#xE72A;</td><td>"+replaceAll("\n", "<br>", data.e_output)+"</td></tr></table>";
             _("cnt").innerHTML += "<h2>Ellenőrzés</h2>";
-            _("cnt").innerHTML += "<button>Ellenőrzés</button>";
+            _("cnt").innerHTML += "<button onclick='checkSolution()'>Ellenőrzés</button>";
+            _("cnt").innerHTML += "<div id='result'></div>";
             marletezik = true;
             if (learn == 'bash') {
-                _("editor").value= "#/bin/bash\n";
+                _("editor").value = "#/bin/bash\n";
             }
             $('#editor').ace({ theme: 'twilight', lang: acelng })
         }
@@ -102,4 +105,35 @@ function replaceAll(a, b, c) {
         f = f.replace(a, b); 
     }
     return f;
+}
+
+function checkSolution() {
+	var formdata = new FormData();
+	formdata.append("lang", learn);
+	formdata.append("code", _("editor").value);
+    
+    //_("result").innerHTML = "Betöltés...";
+	
+	$.ajax({
+		url: 'https://host.csfcloud.com/learndb/megoldas.php?id=' + lastid,
+		type: 'POST',
+		crossDomain: true,
+		data: formdata,
+		success: function(data){
+            var str = "";
+            str = "<table class='resulttable'>";
+            str += "<tr><td><b>Bemenet</b></td><td><b>Kimenet</b></td><td><b>Várt kimenet</b></td></tr>";
+            for (var i = 0; i < data.length; i++) {
+                str += "<tr><td>"+replaceAll("\n", "<br>", data[i].input)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td><td>"+replaceAll("\n", "<br>", data[i].controll)+"</td></tr>";
+            }
+            str += "</table>";
+            _("result").innerHTML = str;
+		},
+		error: function(xhr, status, error){
+			console.log("HTTP GET Error: " + error);
+		},
+        cache: false,
+        contentType: false,
+        processData: false
+	});
 }

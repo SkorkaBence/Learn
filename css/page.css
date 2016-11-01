@@ -102,3 +102,10 @@ header span {
 .icons {
     font-family: 'SegoeMDL2Assets';
 }
+.resulttable {
+    border-collapse: collapse;
+}
+.resulttable td {
+    border: 1px solid black;
+    padding: 8px;
+}
