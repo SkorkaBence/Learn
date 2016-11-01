@@ -3,6 +3,7 @@ function _(e) {
 }
 function title(t) {
     _("title").innerHTML = "";
+    _("sidemenu").innerHTML = "";
     for (var i = 0; i < t.length; i++) {
         _("title").innerHTML += "<span>" + t.charAt(i).toUpperCase() + "</span>";
     }
