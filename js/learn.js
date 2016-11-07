@@ -19,6 +19,9 @@ $(function() {
     }
     userid = getSavedData("userId");
     
+    $("#chooselearn").hide();
+    $("#correctanswer").hide();
+    
     title("learn");
     $("#chooselearn").dialog({
         modal: true,
