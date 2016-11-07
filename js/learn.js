@@ -66,17 +66,25 @@ var acelng;
 var lastid;
 var marletezik = false;
 var userid = false;
+var firstupdate = true;
 
 function updatemenu() {
     _("sidemenu").innerHTML = "<div class='loader'>";
     $.ajax({
-        url: "https://host.csfcloud.com/learndb/list.php",
+        url: "https://host.csfcloud.com/learndb/list.php?userid="+userid+"&lang="+learn,
         success: function(data){
             _("sidemenu").innerHTML = "";
             for (var i = 0; i < data.length; i++) {
-                _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
+                if (data.completed) {
+                    _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")' class='completed'>"+data[i].name+"</button>";
+                } else {
+                    _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
+                }
             }
-            _("cnt").innerHTML = "<h1>Kérlek válassz feladatot az oldalsó menüből!</h1>";
+            if (firstupdate) {
+                firstupdate = false;
+                _("cnt").innerHTML = "<h1>Kérlek válassz feladatot az oldalsó menüből!</h1>";
+            }
         },
         error: function (xhr, status, error) {
             _("sidemenu").innerHTML = "Hiba történt!";
@@ -194,6 +202,7 @@ function checkSolution() {
                         }
                     }
                 });
+                updatemenu();
             }
 		},
 		error: function(xhr, status, error){
