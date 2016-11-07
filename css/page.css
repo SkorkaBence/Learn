@@ -82,13 +82,18 @@ header span {
     padding-right: 20px;
     padding-bottom: 20px;
 }
-.scrollbox {
+.scrollbox.main {
     position: absolute;
     width: calc(100% - 40px);
     height: calc(100% - 100px);
     overflow: auto;
 }
-
+.scrollbox.menu {
+    position: absolute;
+    width: calc(100%);
+    height: calc(100% - 100px);
+    overflow: auto;
+}
 .scrollbox::-webkit-scrollbar {
     width: 1em;
 }
