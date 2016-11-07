@@ -23,13 +23,13 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },
-            /*"C++": function() {
+            "C++": function() {
                 title("learn:c++");
                 learn = "cpp";
                 acelng = "c_cpp";
                 $( this ).dialog( "close" );
                 updatemenu();
-            },*/
+            },
             "PYTHON": function() {
                 title("learn:python");
                 learn = "python";
@@ -93,6 +93,18 @@ function openTask(id) {
             marletezik = true;
             if (learn == 'bash') {
                 _("editor").value = "#!/bin/bash\n";
+            }
+            if (learn == 'cpp') {
+                _("editor").value = "\
+#include <iostream>\n\
+#include <cstdlib>\n\
+\n\
+using namespace std;\n\
+\n\
+int main()\n\
+{\n\
+    return 0;\n\
+}";
             }
             $('#editor').ace({ theme: 'twilight', lang: acelng })
         }
