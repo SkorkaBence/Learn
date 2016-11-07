@@ -66,6 +66,9 @@ function updatemenu() {
             for (var i = 0; i < data.length; i++) {
                 _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
             }
+        },
+        error: function (xhr, status, error) {
+            _("sidemenu").innerHTML = "Hiba történt!";
         }
     });
 }
@@ -112,6 +115,9 @@ int main()\n\
 }";
             }
             $('#editor').ace({ theme: 'twilight', lang: acelng })
+        },
+        error: function (xhr, status, error) {
+            _("editor").innerHTML = "Hiba történt!";
         }
     });
 }
@@ -159,6 +165,7 @@ function checkSolution() {
 		},
 		error: function(xhr, status, error){
 			console.log("HTTP GET Error: " + error);
+            _("result").innerHTML = "Hiba történt!";
 		},
         cache: false,
         contentType: false,
