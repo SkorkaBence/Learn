@@ -122,14 +122,20 @@ function checkSolution() {
 		success: function(data){
             var str = "";
             str = "<table class='resulttable'>";
-            str += "<tr><td><b>Bemenet /console/</b></td><td><b>Bemenet /paraméterek/</b></td><td><b>Bemenet /file/</b></td><td><b>Kimenet</b></td><td><b>Várt kimenet</b></td></tr>";
+            str += "<tr><td><b>Bemenet /console/</b></td><td><b>Bemenet /paraméterek/</b></td><td><b>Bemenet /file/</b></td><td><b>Kimenet</b></td><td><b>Várt kimenet</b></td><td><b>Eredmény</b></td></tr>";
             for (var i = 0; i < data.length; i++) {
                 if (data[i].ok === true) {
                     str += "<tr class='helyes'>";
                 } else {
                     str += "<tr class='hibas'>";
                 }
-                str += "<td>"+replaceAll("\n", "<br>", data[i].input_console)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_parameters)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_file)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td><td>"+replaceAll("\n", "<br>", data[i].controll)+"</td></tr>";
+                str += "<td>"+replaceAll("\n", "<br>", data[i].input_console)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_parameters)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_file)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td><td>"+replaceAll("\n", "<br>", data[i].controll)+"</td>";
+                if (data[i].ok === true) {
+                    str += "<td><b>Helyes</b></td>";
+                } else {
+                    str += "<td><b>Hibás</b></td>";
+                }
+                str += "</tr>";
             }
             str += "</table>";
             _("result").innerHTML = str;
