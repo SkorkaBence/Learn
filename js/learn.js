@@ -157,6 +157,7 @@ function checkSolution() {
 		data: formdata,
 		success: function(data){
             var str = "";
+            var helyes = true;
             str = "<table class='resulttable'>";
             str += "<tr><td><b>Bemenet /console/</b></td><td><b>Bemenet /paraméterek/</b></td><td><b>Bemenet /file/</b></td><td><b>Kimenet</b></td><td><b>Várt kimenet</b></td><td><b>Eredmény</b></td></tr>";
             for (var i = 0; i < data.length; i++) {
@@ -171,10 +172,26 @@ function checkSolution() {
                 } else {
                     str += "<td><b>Hibás</b></td>";
                 }
+                helyes = data[i].ok;
                 str += "</tr>";
             }
             str += "</table>";
             _("result").innerHTML = str;
+            
+            if (helyes) {
+                $("#correctanswer").dialog({
+                    modal: true,
+                    width: 600,
+                    open: function(event, ui) {
+                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+                    },
+                    buttons: {
+                        "Bezár": function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            }
 		},
 		error: function(xhr, status, error){
 			console.log("HTTP GET Error: " + error);
