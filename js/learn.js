@@ -14,6 +14,11 @@ $(function() {
         return;
     }
     
+    if (getSavedData("userId") == "") {
+        saveData("userId", makeid());
+    }
+    userid = getSavedData("userId");
+    
     title("learn");
     $("#chooselearn").dialog({
         modal: true,
@@ -57,6 +62,7 @@ var learn;
 var acelng;
 var lastid;
 var marletezik = false;
+var userid = false;
 
 function updatemenu() {
     _("sidemenu").innerHTML = "<div class='loader'>";
@@ -135,6 +141,7 @@ function checkSolution() {
 	var formdata = new FormData();
 	formdata.append("lang", learn);
 	formdata.append("code", _("editor").value);
+    formdata.append("userId", userid);
     
     _("result").innerHTML = "<div class='loader'>";
 	
@@ -172,4 +179,36 @@ function checkSolution() {
         contentType: false,
         processData: false
 	});
+}
+
+function getSavedData(key) {
+    var name = key + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+}
+
+function saveData(key, data) {
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = ""+key+"="+data+";"+expires+"";
+}
+
+function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 64; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }
