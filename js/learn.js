@@ -23,7 +23,7 @@ $(function() {
     $("#correctanswer").hide();
     $("#osszeskesz").hide();
     
-    title("learn");
+    title(":learn:");
     $("#chooselearn").dialog({
         modal: true,
         width: 600,
