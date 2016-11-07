@@ -9,6 +9,11 @@ function title(t) {
     }
 }
 $(function() {
+    if (location.protocol != 'https:' && location.protocol != 'file:') {
+        location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+        return;
+    }
+    
     title("learn");
     $("#chooselearn").dialog({
         modal: true,
