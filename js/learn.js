@@ -53,7 +53,7 @@ var lastid;
 var marletezik = false;
 
 function updatemenu() {
-    _("sidemenu").innerHTML = "Betöltés...";
+    _("sidemenu").innerHTML = "<div class='loader'>";
     $.ajax({
         url: "https://host.csfcloud.com/learndb/list.php",
         success: function(data){
@@ -73,7 +73,7 @@ function openTask(id) {
             }
         }
     }*/
-    _("cnt").innerHTML = "Betöltés...";
+    _("cnt").innerHTML = "<div class='loader'>";
     lastid = id;
     $.ajax({
         url: "https://host.csfcloud.com/learndb/feladat.php?id=" + id,
@@ -112,7 +112,7 @@ function checkSolution() {
 	formdata.append("lang", learn);
 	formdata.append("code", _("editor").value);
     
-    //_("result").innerHTML = "Betöltés...";
+    _("result").innerHTML = "<div class='loader'>";
 	
 	$.ajax({
 		url: 'https://host.csfcloud.com/learndb/megoldas.php?id=' + lastid,
