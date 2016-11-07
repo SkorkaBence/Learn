@@ -23,13 +23,13 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },
-            "C++": function() {
+            /*"C++": function() {
                 title("learn:c++");
                 learn = "cpp";
                 acelng = "c_cpp";
                 $( this ).dialog( "close" );
                 updatemenu();
-            },
+            },*/
             "PYTHON": function() {
                 title("learn:python");
                 learn = "python";
@@ -37,13 +37,13 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },
-            "PHP": function() {
+            /*"PHP": function() {
                 title("learn:php");
                 learn = "php";
                 acelng = "php";
                 $( this ).dialog( "close" );
                 updatemenu();
-            }
+            }*/
         }
     });
 });
