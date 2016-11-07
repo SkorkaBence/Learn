@@ -100,7 +100,7 @@ function openTask(id) {
             _("cnt").innerHTML += "<h2>Kód</h2>";
             _("cnt").innerHTML += "<textarea id='editor' style='width: 600px; height: 300px;'>";
             _("cnt").innerHTML += "</textarea>";
-            _("cnt").innerHTML += "<button onclick='loadSolution()' class='checkbutton'>Korábbi helyes megoldásom betöltése</button>";
+            //_("cnt").innerHTML += "<button onclick='loadSolution()' class='checkbutton'>Korábbi helyes megoldásom betöltése</button>";
             _("cnt").innerHTML += "<h2>Példa</h2>";
             _("cnt").innerHTML += "<table><tr><td>"+replaceAll("\n", "<br>", data.e_input)+"</td><td class='icons'>&#xE72A;</td><td>"+replaceAll("\n", "<br>", data.e_output)+"</td></tr></table>";
             _("cnt").innerHTML += "<h2>Ellenőrzés</h2>";
@@ -122,7 +122,7 @@ int main()\n\
     return 0;\n\
 }";
             }
-            $('#editor').ace({ theme: 'twilight', lang: acelng })
+            $('#editor').ace({ theme: 'twilight', lang: acelng });
         },
         error: function (xhr, status, error) {
             _("editor").innerHTML = "Hiba történt!";
