@@ -21,6 +21,7 @@ $(function() {
     
     $("#chooselearn").hide();
     $("#correctanswer").hide();
+    $("#osszeskesz").hide();
     
     title("learn");
     $("#chooselearn").dialog({
@@ -74,16 +75,32 @@ function updatemenu() {
         url: "https://host.csfcloud.com/learndb/list.php?userid="+userid+"&lang="+learn,
         success: function(data){
             _("sidemenu").innerHTML = "";
+            var vannemmegoldott = false;
             for (var i = 0; i < data.length; i++) {
                 if (data[i].completed) {
                     _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")' class='completed'>"+data[i].name+"</button>";
                 } else {
                     _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
+                    vannemmegoldott = true;
                 }
             }
             if (firstupdate) {
                 firstupdate = false;
                 _("cnt").innerHTML = "<h1>Kérlek válassz feladatot az oldalsó menüből!</h1>";
+            }
+            if (!vannemmegoldott) {
+                $("#osszeskesz").dialog({
+                    modal: true,
+                    width: 600,
+                    open: function(event, ui) {
+                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+                    },
+                    buttons: {
+                        "Bezár": function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
             }
         },
         error: function (xhr, status, error) {
