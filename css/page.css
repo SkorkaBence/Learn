@@ -72,6 +72,15 @@ header span {
 .leftmenu button.completed {
     color: gray;
 }
+.leftmenu h2 {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    color: white;
+    font-size: 19px;
+}
 .content {
     position: absolute;
     width: calc(100% - 240px);

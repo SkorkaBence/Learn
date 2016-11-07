@@ -76,12 +76,17 @@ function updatemenu() {
         success: function(data){
             _("sidemenu").innerHTML = "";
             var vannemmegoldott = false;
+            _("sidemenu").innerHTML += "<h2>Megoldásra vár</h2>";
+            for (var i = 0; i < data.length; i++) {
+                if (!data[i].completed) {
+                    _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
+                    vannemmegoldott = true;
+                }
+            }
+            _("sidemenu").innerHTML += "<h2>Kész feladatok</h2>";
             for (var i = 0; i < data.length; i++) {
                 if (data[i].completed) {
                     _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")' class='completed'>"+data[i].name+"</button>";
-                } else {
-                    _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
-                    vannemmegoldott = true;
                 }
             }
             if (firstupdate) {
