@@ -73,9 +73,11 @@ function updatemenu() {
             for (var i = 0; i < data.length; i++) {
                 _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
             }
+            _("cnt").innerHTML = "<h1>Kérlek válassz feladatot az oldalsó menüből!</h1>";
         },
         error: function (xhr, status, error) {
             _("sidemenu").innerHTML = "Hiba történt!";
+            _("cnt").innerHTML = "";
         }
     });
 }
