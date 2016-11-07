@@ -17,6 +17,7 @@ $(function() {
     title("learn");
     $("#chooselearn").dialog({
         modal: true,
+        width: 600,
         open: function(event, ui) {
             $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
         },
