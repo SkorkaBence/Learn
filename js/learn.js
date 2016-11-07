@@ -196,7 +196,7 @@ function loadSolution() {
 		crossDomain: true,
 		data: formdata,
 		success: function(data){
-            if (data.exists = false) {
+            if (data.exists === false) {
                 _("editor").value = mostanicode;
             } else {
                 _("editor").value = data.code;
