@@ -88,7 +88,7 @@ function openTask(id) {
             _("cnt").innerHTML += "<h2>Példa</h2>";
             _("cnt").innerHTML += "<table><tr><td>"+replaceAll("\n", "<br>", data.e_input)+"</td><td class='icons'>&#xE72A;</td><td>"+replaceAll("\n", "<br>", data.e_output)+"</td></tr></table>";
             _("cnt").innerHTML += "<h2>Ellenőrzés</h2>";
-            _("cnt").innerHTML += "<button onclick='checkSolution()'>Ellenőrzés</button>";
+            _("cnt").innerHTML += "<button onclick='checkSolution()' class='checkbutton'>Ellenőrzés</button>";
             _("cnt").innerHTML += "<div id='result'></div>";
             marletezik = true;
             if (learn == 'bash') {
@@ -124,7 +124,12 @@ function checkSolution() {
             str = "<table class='resulttable'>";
             str += "<tr><td><b>Bemenet /console/</b></td><td><b>Bemenet /paraméterek/</b></td><td><b>Bemenet /file/</b></td><td><b>Kimenet</b></td><td><b>Várt kimenet</b></td></tr>";
             for (var i = 0; i < data.length; i++) {
-                str += "<tr><td>"+replaceAll("\n", "<br>", data[i].input_console)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_parameters)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_file)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td><td>"+replaceAll("\n", "<br>", data[i].controll)+"</td></tr>";
+                if (data[i].ok === true) {
+                    str += "<tr class='helyes'>";
+                } else {
+                    str += "<tr class='hibas'>";
+                }
+                str += "<td>"+replaceAll("\n", "<br>", data[i].input_console)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_parameters)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_file)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td><td>"+replaceAll("\n", "<br>", data[i].controll)+"</td></tr>";
             }
             str += "</table>";
             _("result").innerHTML = str;
