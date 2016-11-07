@@ -92,7 +92,7 @@ function openTask(id) {
             _("cnt").innerHTML += "<div id='result'></div>";
             marletezik = true;
             if (learn == 'bash') {
-                _("editor").value = "#/bin/bash\n";
+                _("editor").value = "#!/bin/bash\n";
             }
             $('#editor').ace({ theme: 'twilight', lang: acelng })
         }
@@ -122,9 +122,9 @@ function checkSolution() {
 		success: function(data){
             var str = "";
             str = "<table class='resulttable'>";
-            str += "<tr><td><b>Bemenet</b></td><td><b>Kimenet</b></td><td><b>Várt kimenet</b></td></tr>";
+            str += "<tr><td><b>Bemenet /console/</b></td><td><b>Bemenet /paraméterek/</b></td><td><b>Bemenet /file/</b></td><td><b>Kimenet</b></td><td><b>Várt kimenet</b></td></tr>";
             for (var i = 0; i < data.length; i++) {
-                str += "<tr><td>"+replaceAll("\n", "<br>", data[i].input)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td><td>"+replaceAll("\n", "<br>", data[i].controll)+"</td></tr>";
+                str += "<tr><td>"+replaceAll("\n", "<br>", data[i].input_console)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_parameters)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_file)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td><td>"+replaceAll("\n", "<br>", data[i].controll)+"</td></tr>";
             }
             str += "</table>";
             _("result").innerHTML = str;
