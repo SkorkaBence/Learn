@@ -66,13 +66,13 @@ function updatemenu() {
 }
 
 function openTask(id) {
-    if (marletezik) {
+    /*if (marletezik) {
         if (_("editor").value != "") {
             if (!confirm("Biztos ellépsz? A megoldásod törlődni fog!")) {
                 return;
             }
         }
-    }
+    }*/
     _("cnt").innerHTML = "Betöltés...";
     lastid = id;
     $.ajax({
