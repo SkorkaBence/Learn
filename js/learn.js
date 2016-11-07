@@ -75,7 +75,7 @@ function updatemenu() {
         success: function(data){
             _("sidemenu").innerHTML = "";
             for (var i = 0; i < data.length; i++) {
-                if (data.completed) {
+                if (data[i].completed) {
                     _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")' class='completed'>"+data[i].name+"</button>";
                 } else {
                     _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
