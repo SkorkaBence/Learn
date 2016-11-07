@@ -129,7 +129,7 @@ int main()\n\
     return 0;\n\
 }";
             }
-            $('#editor').ace({ theme: 'twilight', lang: acelng });
+            $('#editor').ace({ theme: 'chaos', lang: acelng });
         },
         error: function (xhr, status, error) {
             _("editor").innerHTML = "Hiba történt!";
