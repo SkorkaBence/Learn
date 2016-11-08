@@ -172,3 +172,10 @@ header span {
 #result {
     min-height: 500px;
 }
+code-spoiler {
+    background-color: black;
+    color: black;
+}
+code-spoiler:hover {
+    background-color: transparent;
+}

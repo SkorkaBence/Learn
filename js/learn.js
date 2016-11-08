@@ -148,6 +148,18 @@ function openTask(id) {
             _("cnt").innerHTML += "<table><tr><td>"+replaceAll("\n", "<br>", data.e_input)+"</td><td class='icons'>&#xE72A;</td><td>"+replaceAll("\n", "<br>", data.e_output)+"</td></tr></table>";
             _("cnt").innerHTML += "<h2>Egyéb információk</h2>";
             _("cnt").innerHTML += "Időlimit: 1 másodperc";
+            if (learn == 'cs') {
+                var str = "";
+                str += "<h2>Segítség</h2>";
+                str += "Ha segítségre van szüksége, vigye rá az egeret a kitakart mezőre!<br>";
+                str += "<code-spoiler>";
+                str += "String -> int: Int32.Parse(<string>);<br>";
+                str += "String -> double: Double.Parse(<string>);<br>";
+                str += "File olvasás: System.IO.File.ReadAllText(@\"utvonal\");<br>";
+                str += "Program helye: System.Reflection.Assembly.GetExecutingAssembly().Location;<br>";
+                str += "</code-spoiler>";
+                _("cnt").innerHTML += str;
+            }
             _("cnt").innerHTML += "<h2>Ellenőrzés</h2>";
             _("cnt").innerHTML += "<button onclick='checkSolution()' class='checkbutton csf-wave-button light'>Ellenőrzés</button>";
             _("cnt").innerHTML += "<div id='result'></div>";
