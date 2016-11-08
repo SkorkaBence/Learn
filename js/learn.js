@@ -79,14 +79,14 @@ function updatemenu() {
             _("sidemenu").innerHTML += "<h2>Megoldásra vár</h2>";
             for (var i = 0; i < data.length; i++) {
                 if (!data[i].completed) {
-                    _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")'>"+data[i].name+"</button>";
+                    _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")' class='csf-wave-button light'>"+data[i].name+"</button>";
                     vannemmegoldott = true;
                 }
             }
             _("sidemenu").innerHTML += "<h2>Kész feladatok</h2>";
             for (var i = 0; i < data.length; i++) {
                 if (data[i].completed) {
-                    _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")' class='completed'>"+data[i].name+"</button>";
+                    _("sidemenu").innerHTML += "<button onclick='openTask(\""+data[i].id+"\")' class='completed csf-wave-button light'>"+data[i].name+"</button>";
                 }
             }
             if (firstupdate) {
@@ -107,6 +107,7 @@ function updatemenu() {
                     }
                 });
             }
+            csfLoadVaveButtons();
         },
         error: function (xhr, status, error) {
             _("sidemenu").innerHTML = "Hiba történt!";
@@ -141,7 +142,7 @@ function openTask(id) {
             _("cnt").innerHTML += "<h2>Egyéb információk</h2>";
             _("cnt").innerHTML += "Időlimit: 1 másodperc";
             _("cnt").innerHTML += "<h2>Ellenőrzés</h2>";
-            _("cnt").innerHTML += "<button onclick='checkSolution()' class='checkbutton'>Ellenőrzés</button>";
+            _("cnt").innerHTML += "<button onclick='checkSolution()' class='checkbutton csf-wave-button light'>Ellenőrzés</button>";
             _("cnt").innerHTML += "<div id='result'></div>";
             marletezik = true;
             if (learn == 'bash') {
@@ -160,6 +161,7 @@ int main()\n\
 }";
             }
             $('#editor').ace({ theme: 'chaos', lang: acelng });
+            csfLoadVaveButtons();
         },
         error: function (xhr, status, error) {
             _("editor").innerHTML = "Hiba történt!";
