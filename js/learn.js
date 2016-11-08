@@ -192,7 +192,8 @@ function openTask(id) {
                 str += "<code-spoiler>";
                 str += "String -> int: Int32.Parse(<string>);<br>";
                 str += "String -> double: Double.Parse(<string>);<br>";
-                str += "File olvasás: System.IO.File.ReadAllText(@\"utvonal\");<br>";
+                str += "File olvasás: string text = File.ReadAllText(\"utvonal\");<br>";
+                str += "File olvasás soronként: string[] lines = File.ReadAllLines(\"utvonal\");<br>";
                 str += "Program helye: System.Reflection.Assembly.GetExecutingAssembly().Location;<br>";
                 str += "</code-spoiler>";
                 _("cnt").innerHTML += str;
@@ -219,6 +220,7 @@ int main()\n\
             if (learn == 'cs') {
                 _("editor").value = "\
 using System;\n\
+using System.IO;\n\
 \n\
 namespace Solution\n\
 {\n\
