@@ -76,7 +76,14 @@ $(function() {
             "Pascal": function() {
                 title("learn:pascal");
                 learn = "pascal";
-                acelng = "javascript";
+                acelng = "haxe";
+                $( this ).dialog( "close" );
+                updatemenu();
+            },
+            "Haskell": function() {
+                title("learn:haskell");
+                learn = "haskell";
+                acelng = "haxe";
                 $( this ).dialog( "close" );
                 updatemenu();
             }
