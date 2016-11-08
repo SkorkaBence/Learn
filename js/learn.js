@@ -66,6 +66,20 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },*/
+            /*"JavaScript": function() {
+                title("learn:python");
+                learn = "js";
+                acelng = "javascript";
+                $( this ).dialog( "close" );
+                updatemenu();
+            },*/
+            "Pascal": function() {
+                title("learn:pascal");
+                learn = "pascal";
+                acelng = "javascript";
+                $( this ).dialog( "close" );
+                updatemenu();
+            }
         }
     });
 });
