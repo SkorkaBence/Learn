@@ -179,8 +179,10 @@ function openTask(id) {
             _("cnt").innerHTML += "<button onclick='loadSolution()' class='checkbutton csf-wave-button light'>Betöltés fileból</button>";
             _("cnt").innerHTML += "<textarea id='editor' style='width: 600px; height: 300px;'>";
             _("cnt").innerHTML += "</textarea>";
-            _("cnt").innerHTML += "<h2>Példa</h2>";
-            _("cnt").innerHTML += "<table><tr><td>"+replaceAll("\n", "<br>", data.e_input)+"</td><td class='icons'>&#xE72A;</td><td>"+replaceAll("\n", "<br>", data.e_output)+"</td></tr></table>";
+            if (data.e_input !== null && data.e_output !== null) {
+                _("cnt").innerHTML += "<h2>Példa</h2>";
+                _("cnt").innerHTML += "<table><tr><td>"+replaceAll("\n", "<br>", data.e_input)+"</td><td class='icons'>&#xE72A;</td><td>"+replaceAll("\n", "<br>", data.e_output)+"</td></tr></table>";
+            }
             _("cnt").innerHTML += "<h2>Egyéb információk</h2>";
             _("cnt").innerHTML += "Időlimit: 1 másodperc";
             if (learn == 'cs') {
