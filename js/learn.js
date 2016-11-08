@@ -177,7 +177,7 @@ namespace Solution\n\
     {\n\
         static void Main(string[] args)\n\
         {\n\
-\n\
+            \n\
         }\n\
     }\n\
 }";
