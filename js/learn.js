@@ -58,7 +58,14 @@ $(function() {
                 acelng = "php";
                 $( this ).dialog( "close" );
                 updatemenu();
-            }*/
+            },*/
+            "C#": function() {
+                title("learn:c#");
+                learn = "cs";
+                acelng = "csharp";
+                $( this ).dialog( "close" );
+                updatemenu();
+            }
         }
     });
 });
@@ -158,6 +165,21 @@ using namespace std;\n\
 int main()\n\
 {\n\
     return 0;\n\
+}";
+            }
+            if (learn == 'cs') {
+                _("editor").value = "\
+using System;\n\
+\n\
+namespace Solution\n\
+{\n\
+    class Program\n\
+    {\n\
+        static void Main(string[] args)\n\
+        {\n\
+\n\
+        }\n\
+    }\n\
 }";
             }
             $('#editor').ace({ theme: 'chaos', lang: acelng });
