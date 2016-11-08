@@ -82,6 +82,20 @@ $(function() {
             }
         }
     });
+    
+    $("#codeOpener").change(function() {
+        var file =  _("codeOpener").files[0];
+        if (!file) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function(e) {
+            var contents = e.target.result;
+            //$("#editor").val(contents);
+            $('#editor').data('ace').editor.ace.setValue(contents);
+        };
+    });
 });
 var learn;
 var acelng;
@@ -157,7 +171,7 @@ function openTask(id) {
             _("cnt").innerHTML += "<h2>Kód</h2>";
             _("cnt").innerHTML += "<textarea id='editor' style='width: 600px; height: 300px;'>";
             _("cnt").innerHTML += "</textarea>";
-            //_("cnt").innerHTML += "<button onclick='loadSolution()' class='checkbutton'>Korábbi helyes megoldásom betöltése</button>";
+            _("cnt").innerHTML += "<button onclick='loadSolution()' class='checkbutton csf-wave-button light'>Betöltés fileból</button>";
             _("cnt").innerHTML += "<h2>Példa</h2>";
             _("cnt").innerHTML += "<table><tr><td>"+replaceAll("\n", "<br>", data.e_input)+"</td><td class='icons'>&#xE72A;</td><td>"+replaceAll("\n", "<br>", data.e_output)+"</td></tr></table>";
             _("cnt").innerHTML += "<h2>Egyéb információk</h2>";
@@ -299,34 +313,7 @@ function checkSolution() {
 }
 
 function loadSolution() {
-	var formdata = new FormData();
-	formdata.append("lang", learn);
-    formdata.append("userId", userid);
-    
-    var mostanicode = _("editor").value;
-    _("editor").value = "Betoltes...";
-	
-	$.ajax({
-		url: 'https://host.csfcloud.com/learndb/megoldasaim.php?id=' + lastid,
-		type: 'POST',
-		crossDomain: true,
-		data: formdata,
-		success: function(data){
-            if (data.exists === false) {
-                _("editor").value = mostanicode;
-            } else {
-                _("editor").value = data.code;
-            }
-		},
-		error: function(xhr, status, error){
-			console.log("HTTP GET Error: " + error);
-            _("editor").value = mostanicode;
-            alert("Hiba tortent!");
-		},
-        cache: false,
-        contentType: false,
-        processData: false
-	});
+    $("#codeOpener").click();
 }
 
 function getSavedData(key) {
