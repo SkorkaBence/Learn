@@ -52,7 +52,7 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },
-            "PYTHON": function() {
+            "python": function() {
                 title("learn:python");
                 learn = "python";
                 acelng = "python";
@@ -148,7 +148,7 @@ function openTask(id) {
     _("cnt").innerHTML = "<div class='loader'>";
     lastid = id;
     $.ajax({
-        url: "https://host.csfcloud.com/learndb/feladat.php?id=" + id,
+        url: "https://host.csfcloud.com/learndb/feladat.php?id=" + id + "&userid=" + userid + "&lang=" + learn,
         success: function(data){
             _("cnt").innerHTML = "";
             _("cnt").innerHTML += "<h1>"+data.name+"</h1>";
@@ -207,6 +207,10 @@ namespace Solution\n\
         }\n\
     }\n\
 }";
+            }
+            
+            if (data.code !== false) {
+                _("editor").value = data.code;
             }
             $('#editor').ace({ theme: 'chaos', lang: acelng });
             csfLoadVaveButtons();
