@@ -169,9 +169,9 @@ function openTask(id) {
             _("cnt").innerHTML += ""+data.description+"";
             _("cnt").innerHTML += "<br><br>";
             _("cnt").innerHTML += "<h2>Kód</h2>";
+            _("cnt").innerHTML += "<button onclick='loadSolution()' class='checkbutton csf-wave-button light'>Betöltés fileból</button>";
             _("cnt").innerHTML += "<textarea id='editor' style='width: 600px; height: 300px;'>";
             _("cnt").innerHTML += "</textarea>";
-            _("cnt").innerHTML += "<button onclick='loadSolution()' class='checkbutton csf-wave-button light'>Betöltés fileból</button>";
             _("cnt").innerHTML += "<h2>Példa</h2>";
             _("cnt").innerHTML += "<table><tr><td>"+replaceAll("\n", "<br>", data.e_input)+"</td><td class='icons'>&#xE72A;</td><td>"+replaceAll("\n", "<br>", data.e_output)+"</td></tr></table>";
             _("cnt").innerHTML += "<h2>Egyéb információk</h2>";
