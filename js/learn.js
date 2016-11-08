@@ -231,6 +231,16 @@ namespace Solution\n\
     }\n\
 }";
             }
+            if (learn == 'pascal') {
+                _("editor").value = "\
+PROGRAM Solution;\n\
+USES\n\
+    sysutils;\n\
+\n\
+BEGIN\n\
+    \n\
+END.";
+            }
             
             if (data.code !== false) {
                 _("editor").value = data.code;
