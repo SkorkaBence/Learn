@@ -45,6 +45,13 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },
+            "C#": function() {
+                title("learn:c#");
+                learn = "cs";
+                acelng = "csharp";
+                $( this ).dialog( "close" );
+                updatemenu();
+            },
             "PYTHON": function() {
                 title("learn:python");
                 learn = "python";
@@ -59,13 +66,6 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },*/
-            "C#": function() {
-                title("learn:c#");
-                learn = "cs";
-                acelng = "csharp";
-                $( this ).dialog( "close" );
-                updatemenu();
-            }
         }
     });
 });
