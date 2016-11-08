@@ -223,7 +223,14 @@ function checkSolution() {
                 } else {
                     str += "<tr class='hibas'>";
                 }
-                str += "<td>"+replaceAll("\n", "<br>", data[i].input_console)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_parameters)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_file)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td><td>"+replaceAll("\n", "<br>", data[i].controll)+"</td>";
+                str += "<td>"+replaceAll("\n", "<br>", data[i].input_console)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_parameters)+"</td><td>"+replaceAll("\n", "<br>", data[i].input_file)+"</td><td>"+replaceAll("\n", "<br>", data[i].output)+"</td>";
+                
+                if (data[i].regex === false) {
+                    str += "<td>"+replaceAll("\n", "<br>", data[i].controll)+"</td>";
+                } else {
+                    str += "<td>"+replaceAll("\n", "<br>", data[i].controll)+"<hr/>Elfogadott reguláris kifejezés:<br>"+replaceAll("\n", "<br>", data[i].regex)+"</td>";
+                }
+                
                 if (data[i].ok === true) {
                     str += "<td><b>Helyes</b></td>";
                 } else {
