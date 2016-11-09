@@ -59,13 +59,13 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },
-            /*"PHP": function() {
+            "PHP": function() {
                 title("learn:php");
                 learn = "php";
                 acelng = "php";
                 $( this ).dialog( "close" );
                 updatemenu();
-            },*/
+            },
             /*"JavaScript": function() {
                 title("learn:python");
                 learn = "js";
