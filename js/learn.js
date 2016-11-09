@@ -243,8 +243,11 @@ BEGIN\n\
     \n\
 END.";
             }
+            if (learn == 'haskell') {
+                _("editor").value = "main = print(  )";
+            }
             
-            if (data.code !== false) {
+            if (data.code !== false && data.code != "") {
                 _("editor").value = data.code;
             }
             $('#editor').ace({ theme: 'chaos', lang: acelng });
