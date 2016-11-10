@@ -212,7 +212,7 @@ function openTask(id) {
 \n\
 using namespace std;\n\
 \n\
-int main()\n\
+int main(int argc, char* argv[])\n\
 {\n\
     return 0;\n\
 }";
