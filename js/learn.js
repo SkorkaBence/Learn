@@ -118,6 +118,8 @@ function updatemenu() {
         success: function(data){
             _("sidemenu").innerHTML = "";
             var vannemmegoldott = false;
+            //_("sidemenu").innerHTML += "<button onclick='openNewTaskMenu()' class='csf-wave-button light'>Új feladat beküldése</button>";
+            _("sidemenu").innerHTML += "<button onclick='openCustomTasks()' class='csf-wave-button light'>Beküldött feladatok</button>";
             _("sidemenu").innerHTML += "<h2>Megoldásra vár</h2>";
             for (var i = 0; i < data.length; i++) {
                 if (!data[i].completed) {
@@ -370,4 +372,105 @@ function makeid() {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
+}
+
+var nofTests = 0;
+
+function openNewTaskMenu() {
+    var str = "<h1>Új feladat beküldése</h1>";
+    str += "<input type='text' id='taskname' placeholder='Feladat neve'/>";
+    str += "<h2>Leírás</h2>";
+    str += "<textarea id='description' style='width: 440px; height: 200px;'></textarea>";
+    str += "[*félkövér*] [/dőlt/] [_aláhúzott_]<br>";
+    str += "<h2>Példa</h2>";
+    str += "<table><tr><td><textarea id='pelda-1' class='testarea'></textarea></td><td class='icons'>&#xE72A;</td><td><textarea id='pelda-2' class='testarea'></textarea></td></tr></table>";
+    str += "<h2>Ellenőrző feltételek</h2>";
+    str += "<table id='testchecks' class='resulttable'><tr><td><b>Bemenet /console/</b></td><td><b>Bemenet /paraméterek/</b></td><td><b>Bemenet /file/</b></td><td><b>Kimenet</b></td></tr></table>";
+    str += "<button onclick='addCheck()' class='checkbutton csf-wave-button light'>Új hozzáadása</button>";
+    str += "<h1>Beküldés</h1>";
+    str += "<button onclick='sendTask()' class='checkbutton csf-wave-button light'>Beküldés</button>";
+    nofTests = 0;
+    _("cnt").innerHTML = str;
+    $('#description').ace({ theme: 'chaos', lang: 'html' });
+    //$('#pelda-1').ace({ theme: 'chaos', lang: 'html' });
+    //$('#pelda-2').ace({ theme: 'chaos', lang: 'html' });
+    addCheck();
+}
+
+function addCheck() {
+    var tr = document.createElement("tr");
+    tr.innerHTML =  "<tr><td><textarea id='testcheck-"+nofTests+"-console' class='testarea'></textarea></td><td><textarea id='testcheck-"+nofTests+"-parameters' class='testarea'></textarea></td><td><textarea id='testcheck-"+nofTests+"-file' class='testarea'></textarea></td><td><textarea id='testcheck-"+nofTests+"-output' class='testarea'></textarea></td></tr>";
+    _("testchecks").appendChild(tr);
+    //$("#testcheck-"+nofTests+"-console").ace({ theme: 'chaos', lang: 'html' });
+    //$("#testcheck-"+nofTests+"-parameters").ace({ theme: 'chaos', lang: 'html' });
+    //$("#testcheck-"+nofTests+"-file").ace({ theme: 'chaos', lang: 'html' });
+    //$("#testcheck-"+nofTests+"-output").ace({ theme: 'chaos', lang: 'html' });
+    nofTests++;
+}
+
+function sendTask() {
+    var tarr = [];
+    
+    for (var i = 0; i < nofTests; i++) {
+        tarr.push({
+            console: _("testcheck-"+i+"-console").value,
+            parameters: _("testcheck-"+i+"-parameters").value,
+            file: _("testcheck-"+i+"-file").value,
+            output: _("testcheck-"+i+"-output").value,
+        });
+    }
+    
+	var formdata = new FormData();
+	formdata.append("title", _("taskname").value);
+	formdata.append("description", _("description").value);
+    formdata.append("e_input", _("pelda-1").value);
+    formdata.append("e_output", _("pelda-2").value);
+    formdata.append("tests", tarr);
+    
+    _("cnt").innerHTML = "<div class='loader'>";
+	
+	$.ajax({
+		url: 'https://host.csfcloud.com/learndb/send.php',
+		type: 'POST',
+		crossDomain: true,
+		data: formdata,
+		success: function(data){
+            openTask(data.id);
+		},
+		error: function(xhr, status, error){
+			console.log("HTTP GET Error: " + error);
+            _("result").innerHTML = "Hiba történt!";
+		},
+        cache: false,
+        contentType: false,
+        processData: false
+	});
+}
+
+function openCustomTasks() {
+    _("cnt").innerHTML = "<div class='loader'>";
+    $.ajax({
+        url:  "https://host.csfcloud.com/learndb/list.php?sent&userid="+userid+"&lang="+learn,
+        success: function(data){
+            var str = "<h1>Beküldött feladatok</h1>";
+            //str += "<button onclick='openNewTaskMenu()' class='checkbutton csf-wave-button light'>Új feladat beküldése</button>";
+            str += "<h2>Beküldött, de még nem elfogadott feladatok</h2>";
+            var volt = false;
+            for (var i = 0; i < data.length; i++) {
+                volt = true;
+                if (!data[i].completed) {
+                    str += "<button onclick='openTask(\""+data[i].id+"\")' class='inline checkbutton csf-wave-button light'>"+data[i].name+"</button>";
+                } else {
+                    str += "<button onclick='openTask(\""+data[i].id+"\")' class='inline checkbutton completed csf-wave-button light'>"+data[i].name+"</button>";
+                }
+            }
+            if (!volt) {
+                str += "Nincs ilyen feladat";
+            }
+            _("cnt").innerHTML = str;
+        },
+        error: function (xhr, status, error) {
+            _("editor").innerHTML = "Hiba történt!";
+        }
+    });
 }

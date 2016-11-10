@@ -32,6 +32,7 @@ header span {
     font-size: 60px;
     border-radius: 8px;
     line-height: 60px;
+    box-shadow: 4px 4px 8px black;
 }
 .leftmenu {
     position: absolute;
@@ -157,6 +158,9 @@ header span {
     background-color: #1C1E1B;
     color: #D9CC5A;
 }
+.inline {
+    display: inline-block;
+}
 .loader {
     width: 50px;
     height: 50px;
@@ -178,4 +182,26 @@ code-spoiler {
 }
 code-spoiler:hover {
     background-color: transparent;
+}
+input[type='text'] {
+    height: auto;
+    width: 400px;
+    background-color: #151515;
+    color: white;
+    font-size: 14px;
+    border: none;
+    padding: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px black;
+}
+.testarea {
+    width: 200px;
+    height: 100px;
+    background-color: #161616;
+    border: 1px solid black;
+    color: white;
+    outline: none;
 }
