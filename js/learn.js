@@ -425,7 +425,8 @@ function sendTask() {
 	formdata.append("description", _("description").value);
     formdata.append("e_input", _("pelda-1").value);
     formdata.append("e_output", _("pelda-2").value);
-    formdata.append("tests", tarr);
+    formdata.append("tests", JSON.stringify(tarr));
+    formdata.append("userId", userid);
     
     _("cnt").innerHTML = "<div class='loader'>";
 	
@@ -453,7 +454,7 @@ function openCustomTasks() {
         url:  "https://host.csfcloud.com/learndb/list.php?sent&userid="+userid+"&lang="+learn,
         success: function(data){
             var str = "<h1>Beküldött feladatok</h1>";
-            //str += "<button onclick='openNewTaskMenu()' class='checkbutton csf-wave-button light'>Új feladat beküldése</button>";
+            str += "<button onclick='openNewTaskMenu()' class='checkbutton csf-wave-button light'>Új feladat beküldése</button>";
             str += "<h2>Beküldött, de még nem elfogadott feladatok</h2>";
             var volt = false;
             for (var i = 0; i < data.length; i++) {
