@@ -1,3 +1,5 @@
+csfapi.setDeveloperKey("");
+
 function _(e) {
     return document.getElementById(e);
 }
@@ -160,6 +162,7 @@ function updatemenu() {
                 });
             }
             _("sidemenu").innerHTML += '<div class="csf-experiment" experimentid="86a6a001-4f40-41ca-8554-d6f5bdd34c6d"></div>';
+            csfapi.media.processImages();
             csfLoadVaveButtons();
         },
         error: function (xhr, status, error) {
