@@ -87,6 +87,14 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             }
+            ,
+            /*"PowerShell": function() {
+                title("learn:haskell");
+                learn = "powershell";
+                acelng = "powershell";
+                $( this ).dialog( "close" );
+                updatemenu();
+            }*/
         }
     });
     
@@ -151,6 +159,7 @@ function updatemenu() {
                     }
                 });
             }
+            _("sidemenu").innerHTML += '<div class="csf-experiment" experimentid="86a6a001-4f40-41ca-8554-d6f5bdd34c6d"></div>';
             csfLoadVaveButtons();
         },
         error: function (xhr, status, error) {
@@ -208,42 +217,13 @@ function openTask(id) {
                 _("editor").value = "#!/bin/bash\n";
             }
             if (learn == 'cpp') {
-                _("editor").value = "\
-#include <iostream>\n\
-#include <cstdlib>\n\
-\n\
-using namespace std;\n\
-\n\
-int main(int argc, char* argv[])\n\
-{\n\
-    return 0;\n\
-}";
+                _("editor").value = "#include <iostream>\n#include <cstdlib>\n\nusing namespace std;\n\nint main(int argc, char* argv[])\n{\n    return 0;\n}";
             }
             if (learn == 'cs') {
-                _("editor").value = "\
-using System;\n\
-using System.IO;\n\
-\n\
-namespace Solution\n\
-{\n\
-    class Program\n\
-    {\n\
-        static void Main(string[] args)\n\
-        {\n\
-            \n\
-        }\n\
-    }\n\
-}";
+                _("editor").value = "using System;\nusing System.IO;\n\nnamespace Solution\n{\n    class Program\n    {\n        static void Main(string[] args)\n        {\n            \n        }\n    }\n}";
             }
             if (learn == 'pascal') {
-                _("editor").value = "\
-PROGRAM Solution;\n\
-USES\n\
-    sysutils;\n\
-\n\
-BEGIN\n\
-    \n\
-END.";
+                _("editor").value = "PROGRAM Solution;\nUSES\n    sysutils;\n\nBEGIN\n    \nEND.";
             }
             if (learn == 'haskell') {
                 _("editor").value = "main = print(  )";
@@ -270,19 +250,19 @@ function replaceAll(a, b, c) {
 }
 
 function checkSolution() {
-	var formdata = new FormData();
-	formdata.append("lang", learn);
-	formdata.append("code", _("editor").value);
+    var formdata = new FormData();
+    formdata.append("lang", learn);
+    formdata.append("code", _("editor").value);
     formdata.append("userId", userid);
     
     _("result").innerHTML = "<div class='loader'>";
-	
-	$.ajax({
-		url: 'https://host.csfcloud.com/learndb/megoldas.php?id=' + lastid,
-		type: 'POST',
-		crossDomain: true,
-		data: formdata,
-		success: function(data){
+    
+    $.ajax({
+        url: 'https://host.csfcloud.com/learndb/megoldas.php?id=' + lastid,
+        type: 'POST',
+        crossDomain: true,
+        data: formdata,
+        success: function(data){
             var str = "";
             var helyes = true;
             str = "<table class='resulttable'>";
@@ -327,15 +307,15 @@ function checkSolution() {
                 });
                 updatemenu();
             }
-		},
-		error: function(xhr, status, error){
-			console.log("HTTP GET Error: " + error);
+        },
+        error: function(xhr, status, error){
+            console.log("HTTP GET Error: " + error);
             _("result").innerHTML = "Hiba történt!";
-		},
+        },
         cache: false,
         contentType: false,
         processData: false
-	});
+    });
 }
 
 function loadSolution() {
@@ -420,32 +400,32 @@ function sendTask() {
         });
     }
     
-	var formdata = new FormData();
-	formdata.append("title", _("taskname").value);
-	formdata.append("description", _("description").value);
+    var formdata = new FormData();
+    formdata.append("title", _("taskname").value);
+    formdata.append("description", _("description").value);
     formdata.append("e_input", _("pelda-1").value);
     formdata.append("e_output", _("pelda-2").value);
     formdata.append("tests", JSON.stringify(tarr));
     formdata.append("userId", userid);
     
     _("cnt").innerHTML = "<div class='loader'>";
-	
-	$.ajax({
-		url: 'https://host.csfcloud.com/learndb/send.php',
-		type: 'POST',
-		crossDomain: true,
-		data: formdata,
-		success: function(data){
+    
+    $.ajax({
+        url: 'https://host.csfcloud.com/learndb/send.php',
+        type: 'POST',
+        crossDomain: true,
+        data: formdata,
+        success: function(data){
             openTask(data.id);
-		},
-		error: function(xhr, status, error){
-			console.log("HTTP GET Error: " + error);
+        },
+        error: function(xhr, status, error){
+            console.log("HTTP GET Error: " + error);
             _("result").innerHTML = "Hiba történt!";
-		},
+        },
         cache: false,
         contentType: false,
         processData: false
-	});
+    });
 }
 
 function openCustomTasks() {
