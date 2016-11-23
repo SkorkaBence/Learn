@@ -47,6 +47,13 @@ $(function() {
                 $( this ).dialog( "close" );
                 updatemenu();
             },
+            "B++": function() {
+                title("learn:b++");
+                learn = "bpp";
+                acelng = "c_cpp";
+                $( this ).dialog( "close" );
+                updatemenu();
+            },
             "C#": function() {
                 title("learn:c#");
                 learn = "cs";
@@ -221,6 +228,9 @@ function openTask(id) {
             }
             if (learn == 'cpp') {
                 _("editor").value = "#include <iostream>\n#include <cstdlib>\n\nusing namespace std;\n\nint main(int argc, char* argv[])\n{\n    return 0;\n}";
+            }
+            if (learn == 'bpp') {
+                _("editor").value = "nevter alapcucc sorvege\n\negeszszam fofuggveny nyit egeszszam argc vesszo karakter mutato argv nyitokapocs zarokapocs zar\nkezd\n    visszamesz 0 sorvege\nvege";
             }
             if (learn == 'cs') {
                 _("editor").value = "using System;\nusing System.IO;\n\nnamespace Solution\n{\n    class Program\n    {\n        static void Main(string[] args)\n        {\n            \n        }\n    }\n}";
