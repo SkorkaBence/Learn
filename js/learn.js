@@ -50,7 +50,7 @@ $(function() {
             "B++": function() {
                 title("learn:b++");
                 learn = "bpp";
-                acelng = "c_cpp";
+                acelng = "bpp";
                 $( this ).dialog( "close" );
                 updatemenu();
             },
