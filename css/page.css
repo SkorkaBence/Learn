@@ -1,7 +1,7 @@
 html, body {
     padding: 0px;
     margin: 0px;
-    background-color: white;
+    background-color: transparent;
     font-family: 'Inconsolata', monospace;
 }
 main {
