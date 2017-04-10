@@ -205,3 +205,6 @@ input[type='text'] {
     color: white;
     outline: none;
 }
+a {
+    color: black;
+}

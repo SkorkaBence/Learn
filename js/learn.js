@@ -303,6 +303,7 @@ function checkSolution() {
                 str += "</tr>";
             }
             str += "</table>";
+            str += "Az ellenőrzést a <a href='https://servers.csfcloud.com/' target='_blank'>CSF Servers</a> rendszer futtatta le.";
             _("result").innerHTML = str;
             
             if (helyes) {
